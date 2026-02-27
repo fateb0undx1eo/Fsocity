@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Machine Health Monitor</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #36067f;
+      color: white;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .card {
+      background: #1e293b;
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .value {
+      font-size: 40px;
+      margin: 10px;
+    }
+
+    .status {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Smart Machine Health Monitor</h1>
+
+<button onclick="increaseTemp()">Increase Temp</button>
+<button onclick="resetTemp()">Reset</button>
+
+<div class="card">
+  <h2>Temperature</h2>
+  <div class="value" id="temp">--</div>
+  <div class="status" id="status">--</div>
+</div>
+
+<div class="card">
+  <h2>Vibration</h2>
+  <div class="value" id="vib">--</div>
+  <div class="status" id="vibStatus">--</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
