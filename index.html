@@ -1,64 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Smart Machine Health Monitor</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #36067f;
-      color: white;
-      text-align: center;
-      padding-top: 40px;
-    }
-
-    .card {
-      background: #1e293b;
-      width: 300px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .value {
-      font-size: 40px;
-      margin: 10px;
-    }
-
-    .status {
-      font-size: 24px;
-      margin-top: 10px;
-    }
-
-    button {
-      margin: 5px;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Energy System</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<h1>Smart Machine Health Monitor</h1>
+  <!-- MACHINE SELECTION SCREEN -->
+  <section id="selectionScreen" class="screen active">
+    <h1>Select Machine</h1>
 
-<button onclick="increaseTemp()">Increase Temp</button>
-<button onclick="resetTemp()">Reset</button>
+    <div class="machine-grid">
 
-<div class="card">
-  <h2>Temperature</h2>
-  <div class="value" id="temp">--</div>
-  <div class="status" id="status">--</div>
-</div>
+      <div class="machine-card" onclick="openMachine('CNC Machine')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942925.png">
+        <h3>CNC Machine</h3>
+      </div>
 
-<div class="card">
-  <h2>Vibration</h2>
-  <div class="value" id="vib">--</div>
-  <div class="status" id="vibStatus">--</div>
-</div>
+      <div class="machine-card" onclick="openMachine('Conveyor Belt')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2897/2897765.png">
+        <h3>Conveyor Belt</h3>
+      </div>
 
-<script src="script.js"></script>
+      <div class="machine-card" onclick="openMachine('Air Compressor')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942920.png">
+        <h3>Air Compressor</h3>
+      </div>
+
+      <div class="machine-card" onclick="openMachine('Industrial Furnace')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1585/1585356.png">
+        <h3>Industrial Furnace</h3>
+      </div>
+
+      <div class="machine-card" onclick="openMachine('Packaging Unit')">
+        <img src="https://cdn-icons-png.flaticon.com/512/3082/3082033.png">
+        <h3>Packaging Unit</h3>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE MACHINE SCREEN -->
+  <section id="machineScreen" class="screen">
+    <button onclick="goBack()" class="back-btn">← Back</button>
+
+    <h1 id="machineTitle"></h1>
+
+    <div class="live-stats">
+      <div class="stat-box">
+        <h4>Load</h4>
+        <p id="loadValue">0%</p>
+      </div>
+
+      <div class="stat-box">
+        <h4>Efficiency</h4>
+        <p id="effValue">0%</p>
+      </div>
+
+      <div class="stat-box">
+        <h4>Energy Consumption</h4>
+        <p id="energyValue">0 kW</p>
+      </div>
+
+      <div class="stat-box">
+        <h4>Condition</h4>
+        <p id="conditionValue">NORMAL</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
 </body>
-</html>
+</html
