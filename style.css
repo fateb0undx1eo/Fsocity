@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #1e1b4b, #0f172a);
+  color: white;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  padding: 30px;
+}
+
+.screen.active {
+  display: block;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+/* Machine Cards */
+.machine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.machine-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.machine-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(99,102,241,0.6);
+}
+
+.machine-card img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+/* Live Stats */
+.live-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.stat-box {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.stat-box p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.back-btn {
+  background: #6366f1;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
