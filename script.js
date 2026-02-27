@@ -1,66 +1,107 @@
-let temp = 65;
-let vib = 2;
-
-function updateStatus() {
-  document.getElementById("temp").innerText = temp.toFixed(1) + "°C";
-
-  if (temp < 50) {
-    document.getElementById("status").innerText = "NORMAL";
-    document.getElementById("status").style.color = "green";
-  } 
-  else if (temp < 70) {
-    document.getElementById("status").innerText = "WARNING";
-    document.getElementById("status").style.color = "orange";
-  } 
-  else {
-    document.getElementById("status").innerText = "CRITICAL";
-    document.getElementById("status").style.color = "red";
+// ================= MACHINE DATA =================
+const machines = {
+  "CNC Machine": {
+    base: 20,
+    idle: 5,
+    load: 70,
+    efficiency: 90,
+    state: "ACTIVE"
+  },
+  "Conveyor Belt": {
+    base: 15,
+    idle: 4,
+    load: 50,
+    efficiency: 85,
+    state: "ACTIVE"
+  },
+  "Air Compressor": {
+    base: 18,
+    idle: 6,
+    load: 40,
+    efficiency: 80,
+    state: "ACTIVE"
+  },
+  "Industrial Furnace": {
+    base: 25,
+    idle: 8,
+    load: 85,
+    efficiency: 75,
+    state: "ACTIVE"
+  },
+  "Packaging Unit": {
+    base: 10,
+    idle: 3,
+    load: 30,
+    efficiency: 95,
+    state: "ACTIVE"
   }
+};
+
+let interval;
+let currentMachine = null;
+
+// ================= OPEN MACHINE =================
+function openMachine(name) {
+  currentMachine = machines[name];
+
+  document.getElementById("selectionScreen").classList.remove("active");
+  document.getElementById("machineScreen").classList.add("active");
+
+  document.getElementById("machineTitle").innerText = name;
+
+  startSimulation();
 }
 
-function updateVibration() {
-  document.getElementById("vib").innerText = vib.toFixed(1) + " mm/s";
+// ================= GO BACK =================
+function goBack() {
+  clearInterval(interval);
 
-  if (vib < 3) {
-    document.getElementById("vibStatus").innerText = "NORMAL";
-    document.getElementById("vibStatus").style.color = "green";
-  } 
-  else if (vib < 6) {
-    document.getElementById("vibStatus").innerText = "WARNING";
-    document.getElementById("vibStatus").style.color = "orange";
-  } 
-  else {
-    document.getElementById("vibStatus").innerText = "CRITICAL";
-    document.getElementById("vibStatus").style.color = "red";
-  }
+  document.getElementById("machineScreen").classList.remove("active");
+  document.getElementById("selectionScreen").classList.add("active");
 }
 
-function randomBetween(min, max) {
-  return Math.random() * (max - min) + min;
+// ================= SIMULATION =================
+function startSimulation() {
+  interval = setInterval(() => {
+
+    // Load fluctuation
+    currentMachine.load += (Math.random() * 6 - 3);
+    currentMachine.load = Math.max(10, Math.min(100, currentMachine.load));
+
+    // Efficiency slowly drops
+    currentMachine.efficiency -= 0.05;
+    if (currentMachine.efficiency < 50) {
+      currentMachine.efficiency = 95; // auto reset for demo
+    }
+
+    // Energy formula
+    const energy =
+      currentMachine.base *
+      (currentMachine.load / 100) *
+      (currentMachine.efficiency / 100);
+
+    // Condition detection
+    let condition = "NORMAL";
+    if (currentMachine.efficiency < 75) condition = "WARNING";
+    if (currentMachine.efficiency < 60) condition = "CRITICAL";
+
+    // Update UI
+    document.getElementById("loadValue").innerText =
+      currentMachine.load.toFixed(0) + "%";
+
+    document.getElementById("effValue").innerText =
+      currentMachine.efficiency.toFixed(1) + "%";
+
+    document.getElementById("energyValue").innerText =
+      energy.toFixed(1) + " kW";
+
+    const conditionElement = document.getElementById("conditionValue");
+    conditionElement.innerText = condition;
+
+    // Color condition
+    if (condition === "NORMAL") conditionElement.style.color = "#22c55e";
+    if (condition === "WARNING") conditionElement.style.color = "#facc15";
+    if (condition === "CRITICAL") conditionElement.style.color = "#ef4444";
+
+  }, 1000);
 }
-
-function simulateMachine() {
-  temp += randomBetween(-2, 3);
-  temp = Math.max(30, Math.min(100, temp));
-
-  vib += randomBetween(-0.3, 0.5);
-  vib = Math.max(0.5, Math.min(8, vib));
-
-  updateStatus();
-  updateVibration();
-}
-
-function increaseTemp() {
-  temp += 10;
-  updateStatus();
-}
-
-function resetTemp() {
-  temp = 45;
-  updateStatus();
-}
-
-updateStatus();
-updateVibration();
-
-setInterval(simulateMachine, 1000);
