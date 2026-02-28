@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-const API = "http://localhost:5000";
+const API = "https://fsocity.onrender.com/";
 const ADMIN_PWD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 // ── Color constants matching fsociety dark theme ──────────────────────────────
