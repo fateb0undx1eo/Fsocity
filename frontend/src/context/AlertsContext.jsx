@@ -4,7 +4,7 @@ const AlertsCtx = createContext(null);
 const SAFE_DEFAULT = { machineLimits: {}, alerts: [], setMachineLimit: () => { }, removeMachineLimit: () => { }, getMachineLimit: () => null, getMachineLimits: () => ({}), clearAlert: () => { }, clearAllAlerts: () => { }, markAllRead: () => { }, unreadCount: 0, checkLimits: () => { } };
 
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://fsocity.onrender.com/";
 
 // How long (ms) before the same machine+sensor can fire another alert/email
 const NOTIFY_COOLDOWN_MS = 5 * 60 * 1000; // 5 min for in-app bubble
