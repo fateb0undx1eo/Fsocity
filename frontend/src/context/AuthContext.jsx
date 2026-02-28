@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 const AuthCtx = createContext(null);
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://fsocity.onrender.com/";
 
 function loadSession() {
     try {
