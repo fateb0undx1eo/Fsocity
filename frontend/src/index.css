@@ -1,0 +1,49 @@
+/* ── Google Fonts ─────────────────────────────────────────────── */
+/* Plus Jakarta Sans → all UI (headings, body, labels, badges)   */
+/* Roboto Mono       → sensor values, numbers, data              */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap");
+
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* Local fonts */
+@font-face {
+  font-family: "HelveticaNeueHeavy";
+  src: url("/src/assets/fonts/HelveticaNeueHeavy.ttf") format("truetype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Engry";
+  src: url("/src/assets/fonts/Engry-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+/* Base reset + theme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-display: "Engry", sans-serif;
+  /* Logo only */
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  /* All headings */
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  /* All UI text */
+  --font-mono: "Roboto Mono", monospace;
+  /* Sensor values, numbers */
+}
+
+body {
+  background-color: #000000;
+  color: #e5e5e5;
+  font-family: var(--font-body);
+}
+
+/* Sidebar transition */
+.sidebar {
+  transition: width 0.3s ease, transform 0.3s ease;
+}
